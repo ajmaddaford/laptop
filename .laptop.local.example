@@ -1,0 +1,31 @@
+#!/bin/sh
+
+brew_install_or_upgrade 'node'
+brew_install_or_upgrade 'heroku-toolbelt'
+
+brew_tap 'caskroom/cask'
+brew_install_or_upgrade 'brew-cask'
+
+apps=(
+  google-chrome
+  slack
+  appcleaner
+  firefox
+  vagrant
+  flash
+  iterm2
+  virtualbox
+  atom
+  qlcolorcode
+  qlmarkdown
+  qlprettypatch
+  qlstephen
+  quicklook-json
+)
+
+fancy_echo "installing apps..."
+for app in "${apps[@]}"
+do
+  fancy_echo "installing %s..." "$app"
+  brew cask install --appdir=/Applications $app
+done
